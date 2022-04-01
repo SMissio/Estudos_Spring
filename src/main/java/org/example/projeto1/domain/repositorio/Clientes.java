@@ -49,7 +49,7 @@ public class Clientes {
         }
         entityManager.remove(cliente);
     }
-
+//
     @Transactional
     public void deletar(Integer id){
         Cliente cliente = entityManager.find( Cliente.class, id );
