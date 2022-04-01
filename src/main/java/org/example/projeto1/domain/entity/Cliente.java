@@ -1,6 +1,13 @@
 package org.example.projeto1.domain.entity;
 
+import javax.persistence.*;
+
+@Entity
+@Table
 public class Cliente {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column
     private Integer id;
     private String nome;
 
