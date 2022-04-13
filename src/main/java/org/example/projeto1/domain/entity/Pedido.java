@@ -8,28 +8,33 @@ import java.util.List;
 @Entity
 @Table(name = "pedido")
 public class Pedido {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     private Integer id;
 
     @ManyToOne
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
+
     @Column(name = "data_pedido")
     private LocalDate dataPedido;
-    @Column(name = "total", length = 20,precision = 2)
+
+    @Column(name = "total", precision = 20, scale = 2)
     private BigDecimal total;
+
     @OneToMany(mappedBy = "pedido")
+    private List<ItemPedido> itens;
 
-    private List<ItemPedido> items;
-
-    public List<ItemPedido> getItems() {
-        return items;
+    public List<ItemPedido> getItens() {
+        return itens;
     }
 
-    public void setItems(List<ItemPedido> items) {
-        this.items = items;
+    public void setItens(List<ItemPedido> itens) {
+        this.itens = itens;
     }
+
     public Integer getId() {
         return id;
     }
@@ -62,5 +67,12 @@ public class Pedido {
         this.total = total;
     }
 
-
+    @Override
+    public String toString() {
+        return "Pedido{" +
+                "id=" + id +
+                ", dataPedido=" + dataPedido +
+                ", total=" + total +
+                '}';
+    }
 }
